@@ -14,7 +14,7 @@
 	
 	"files": [{
 		"includePattern": "/home/travis/build/AlexeyYa/origin/build/(.*\.deb)", 
-		"upladPattern": "pool/main/m/mypackage/$1",
+		"uploadPattern": "pool/main/m/mypackage/$1",
 		"matrixParams": {
 			"deb_distribution": "vivid",
 			"deb_component": "main",
