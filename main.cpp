@@ -1,9 +1,22 @@
 #include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#include "tutorial.h"
+#ifdef USE_MYMATH
+#  include "MathFunctions.h"
+#endif
 
 using namespace std;
 
-int main()
+int main(int args, char ** argv)
 {
-  cout << "Hello World!!12" << endl;
+  double inputValue = strtod(argv[1], NULL);
+#ifdef USE_MYMATH
+  const double outputValue = mysqrt(inputValue);
+#else
+  const double outputValue = sqrt(inputValue);
+#endif
+
+  cout << "Hello World! OutVal " << outputValue << endl;
   return 0;
 }
