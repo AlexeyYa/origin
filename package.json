@@ -7,6 +7,10 @@
 		"licenses": ["MIT"]
 	},
 	
+	"version": {
+		"name": "0.1.$TRAVIS_BUILD_NUMBER"
+	},
+	
 	"files": [{
 		"includePattern": "build/bin/(.*\.deb)", 
 		"upladPattern": "pool/main/m/mypackage/$1",
