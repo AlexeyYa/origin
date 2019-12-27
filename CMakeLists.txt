@@ -31,10 +31,6 @@ enable_testing()
 
 add_test(NAME Runs COMMAND HelloWorld 2)
 
-add_test(NAME Usage COMMAND HelloWorld 5)
-set_tests_properties(Usage
-    PROPERTIES PASS_REGULAR_EXPRESSION "Usage:.*number*")
-
 add_test(NAME Counts COMMAND HelloWorld 7)
 set_tests_properties(Counts
     PROPERTIES PASS_REGULAR_EXPRESSION "Hello World! OutVal 9")
