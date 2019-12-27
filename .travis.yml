@@ -9,5 +9,5 @@ deploy:
     provider: bintray
     user: alexeyya
     key: ${BINTRAY_KEY}
-    file: ./package.json
+    file: package.json
     edge: true
