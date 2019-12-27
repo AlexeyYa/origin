@@ -9,5 +9,5 @@ deploy:
     provider: bintray
     skip_cleanup: true
     user: alexeyya
-    key: ${BINTRAY_KEY}
-    file: ./build/bintray.json
+    key: $ENV{BINTRAY_KEY}
+    file: ${PROJECT_BINARY_DIR}/bintray.json
