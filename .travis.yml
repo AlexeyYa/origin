@@ -8,6 +8,6 @@ script: ./build.sh
 deploy:
     provider: bintray
     user: alexeyya
-    key: 182656c810ccb28b00551a2ca189161f4de14768
+    key: ${BINTRAY_KEY}
     file: ./package.json
     edge: true
