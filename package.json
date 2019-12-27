@@ -28,7 +28,7 @@
       ],
       "gpgSign": false
   },
-  "files": [
+  "files":
     {
         "includePattern": "/home/travis/build/AlexeyYa/origin/build/HelloWorld-0.1.${TRAVIS_BUILD_NUMBER}-Linux.deb",
         "uploadPattern": "pool/main/m/origin/${TRAVIS_BUILD_NUMBER}",
@@ -37,7 +37,6 @@
 			"deb_component": "main",
 			"deb_architecture": "amd64"
 	    }
-    }
-  ],
+    },
   "publish": true
 }
