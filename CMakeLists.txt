@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(HelloWorld VERSION 0.1.1 LANGUAGES CXX)
+project(HelloWorld VERSION 0.1.${CMAKE_PATCH_VERSION} LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-option(USE_MYMATH "Use tutorial provided math implementation" ON)
+option(USE_MYMATH "Use tutorial provided math implementation" OFF)
 
 configure_file(tutorial.h.in tutorial.h)
 
@@ -38,4 +38,6 @@ set_tests_properties(Counts
 include(InstallRequiredSystemLibraries)
 set(CPACK_PACKAGE_VERSION_MAJOR "${HelloWorld_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${HelloWorld_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${HelloWorld_VERSION_PATCH}")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Alexey")
 include(CPack)
