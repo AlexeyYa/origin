@@ -6,8 +6,8 @@ compiler: gcc
 script: ./build.sh
 
 deploy:
-    skip_cleanup: true
     provider: bintray
-    file: package.json
     user: alexeyya
     key: 182656c810ccb28b00551a2ca189161f4de14768
+    file: ./package.json
+    edge: true
