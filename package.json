@@ -1,0 +1,21 @@
+{
+	"package": {
+		"name": "origin",
+		"repo": "helloworld",
+		"subject": "alexeyya",
+		"vcs_url": "https://github.com/AlexeyYa/origin.git",
+		"licenses": ["MIT"]
+	},
+	
+	"files": [{
+		"includePattern": "build/bin/(.*\.deb)", 
+		"upladPattern": "pool/main/m/mypackage/$1",
+		"matrixParams": {
+			"deb_distribution": "vivid",
+			"deb_component": "main",
+			"deb_architecture": "amd64"
+		}
+	}],
+	
+	"publish": true
+}
