@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 option(USE_MYMATH "Use tutorial provided math implementation" OFF)
 
 configure_file(tutorial.h.in tutorial.h)
+configure_file(bintray.json.in bintray.json)
 
 if(USE_MYMATH)
     add_subdirectory(MathFunctions)

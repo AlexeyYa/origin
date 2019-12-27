@@ -10,4 +10,4 @@ deploy:
     skip_cleanup: true
     user: alexeyya
     key: ${BINTRAY_KEY}
-    file: package.json
+    file: bintray.json
