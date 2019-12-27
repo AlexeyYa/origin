@@ -4,3 +4,9 @@ dist: bionic
 compiler: gcc
 
 script: ./build.sh
+
+deploy:
+    provider: bintray
+    file: HelloWorld-0.1.1.deb
+    user: alexeyya
+    key: 182656c810ccb28b00551a2ca189161f4de14768
