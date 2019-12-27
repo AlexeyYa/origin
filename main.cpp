@@ -14,7 +14,7 @@ int main(int args, char ** argv)
 #ifdef USE_MYMATH
   const double outputValue = mysqrt(inputValue);
 #else
-  const double outputValue = inputValue - 1;
+  const double outputValue = inputValue + 2;
 #endif
 
   cout << "Hello World! OutVal " << outputValue << endl;
