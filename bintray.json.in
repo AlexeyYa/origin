@@ -11,12 +11,7 @@
     "licenses": ["MIT"],
     "labels": ["cool", "awesome", "gorilla"],
     "public_download_numbers": false,
-    "public_stats": false,
-    "attributes": [
-       { "name": "att1", "values" : ["val1"], "type": "string" },
-       { "name": "att2", "values" : [1, 2.2, 4], "type": "number" },
-       { "name": "att5", "values" : ["2014-12-28T19:43:37+0100"], "type": "date" }
-    ]
+    "public_stats": false
   },
   "version": {
       "name": "@CMAKE_PROJECT_VERSION@"
@@ -24,7 +19,7 @@
   "files": [
     {
         "includePattern": "/home/travis/build/AlexeyYa/origin/build/HelloWorld-0.1.$ENV{TRAVIS_BUILD_NUMBER}-Linux.deb",
-        "uploadPattern": "$1",
+        "uploadPattern": "HelloWorld-0.1.$ENV{TRAVIS_BUILD_NUMBER}-Linux.deb",
 		"matrixParams": {
 			"deb_distribution": "$ENV{TRAVIS_DIST}",
 			"deb_component": "main",
