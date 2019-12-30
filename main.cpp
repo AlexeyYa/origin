@@ -2,21 +2,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "tutorial.h"
-#ifdef USE_MYMATH
-#  include "MathFunctions.h"
-#endif
 
 using namespace std;
 
-int main(int args, char ** argv)
+int main()
 {
-  double inputValue = strtod(argv[1], NULL);
-#ifdef USE_MYMATH
-  const double outputValue = mysqrt(inputValue);
+#ifdef USE_VERSION
+  cout << "Hello World! Version " << HelloWorld_VERSION_MAJOR << "."
+                                  << HelloWorld_VERSION_MINOR << "."
+                                  << HelloWorld_VERSION_PATCH << endl;
 #else
-  const double outputValue = inputValue + 2;
+  cout << "Hello World!" << endl;
 #endif
-
-  cout << "Hello World! OutVal " << outputValue << endl;
   return 0;
 }
