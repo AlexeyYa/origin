@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
 
 if($ENV{TRAVIS_BUILD_NUMBER})
-    project(HelloWorld VERSION 0.1.$ENV{TRAVIS_BUILD_NUMBER} LANGUAGES CXX)
+    project(helloworld VERSION 0.1.$ENV{TRAVIS_BUILD_NUMBER} LANGUAGES CXX)
 else()
-    project(HelloWorld VERSION 0.1.1 LANGUAGES CXX)
+    project(helloworld VERSION 0.1.1 LANGUAGES CXX)
 endif()
 
+message(STATUS "Setting up project")
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
@@ -31,18 +32,11 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
                  ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
                  EXCLUDE_FROM_ALL)
 
-# The gtest/gtest_main targets carry header search path
-# dependencies automatically when using CMake 2.8.11 or
-# later. Otherwise we have to add them here ourselves.
-if (CMAKE_VERSION VERSION_LESS 2.8.11)
-  include_directories("${gtest_SOURCE_DIR}/include")
-endif()
-
 # Now simply link against gtest or gtest_main as needed. Eg
 #add_executable(example example.cpp)
 #target_link_libraries(example gtest_main)
 #add_test(NAME example_test COMMAND example)
-
+message(VERBOSE "Setting version and ci/cd")
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -54,51 +48,57 @@ if(USE_VERSION)
     configure_file(tutorial.h.in tutorial.h)
 endif()
 
-add_executable(HelloWorld main.cpp)
+message(STATUS "Compilation")
+add_executable(helloworld main.cpp)
 
-target_include_directories(HelloWorld PUBLIC
+target_include_directories(helloworld PUBLIC
                             "${PROJECT_BINARY_DIR}"
                             )
 
-install(TARGETS HelloWorld DESTINATION bin)
+install(TARGETS helloworld DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/tutorial.h"
     DESTINATION include
     )
 
 include(InstallRequiredSystemLibraries)
-set(CPACK_PACKAGE_VERSION_MAJOR "${HelloWorld_VERSION_MAJOR}")
-set(CPACK_PACKAGE_VERSION_MINOR "${HelloWorld_VERSION_MINOR}")
-set(CPACK_PACKAGE_VERSION_PATCH "${HelloWorld_VERSION_PATCH}")
+set(CPACK_PACKAGE_VERSION_MAJOR "${helloworld_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${helloworld_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${helloworld_VERSION_PATCH}")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Alexey")
 include(CPack)
 
-#add_executable(tests tests/tests.cpp)
+message(NOTICE "Adding tests")
+enable_testing()
+add_executable(tests tests/tests.cpp)
 
 # Add src to the include directories for the test target
-#target_include_directories(
-#    tests PRIVATE
-#    "${CMAKE_CURRENT_SOURCE_DIR}"
-#)
+target_include_directories(
+    tests PRIVATE
+    "${PROJECT_BINARY_DIR}"
+)
 
 # Link test target against gtest libraries
-#target_link_libraries(tests PRIVATE gtest gtest_main)
+target_link_libraries(tests PRIVATE gtest gtest_main)
 
-#if (MSVC)
-#    target_compile_options(
-#        HelloWorld PRIVATE
-#        /W4
-#    )
-#    target_compile_options(
-#        tests PRIVATE
-#        /W4
-#    )
-#else ()
-#    target_compile_options(
-#        HelloWorld PRIVATE
-#        -Wall -Wextra -pedantic -Werror
-#    )
-#    target_compile_options(
-#        tests PRIVATE
-#        -Wall -Wextra -pedantic -Werror
-#    )
-#endif()
+if (MSVC)
+    target_compile_options(
+        helloworld PRIVATE
+        /W4
+    )
+    target_compile_options(
+        tests PRIVATE
+        /W4
+    )
+else ()
+    target_compile_options(
+        helloworld PRIVATE
+        -Wall -Wextra -pedantic -Werror
+    )
+    target_compile_options(
+        tests PRIVATE
+        -Wall -Wextra -pedantic -Werror
+    )
+endif()
+
+add_test(NAME Runs COMMAND helloworld 0)
+add_test(tests tests)
