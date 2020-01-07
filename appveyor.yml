@@ -17,3 +17,16 @@ build:
 
 test_script:
   - '%APPVEYOR_BUILD_FOLDER%\%CONFIGURATION%\tests.exe'
+
+deploy:
+- provider: BinTray
+  username: alexeyya
+  api_key:
+    secure: AxjYJbTd/GAJNYnkV6NpQoxE8JKQbHBT0ZfCa5kg2MvJObnYw7XYQq8EZ+wAjjrn
+  subject: alexeyya
+  repo: helloworld
+  package: origin
+  publish: true
+  override: true
+  explode: true
+  
