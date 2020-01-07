@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 if($ENV{TRAVIS_BUILD_NUMBER})
     project(helloworld VERSION 0.1.$ENV{TRAVIS_BUILD_NUMBER} LANGUAGES CXX)
+elseif($ENV(APPVEYOR_BUILD_NUMBER))
+    project(helloworld VERSION 0.1.$ENV{APPVEYOR_BUILD_NUMBER} LANGUAGES CXX)
 else()
     project(helloworld VERSION 0.1.1 LANGUAGES CXX)
 endif()
